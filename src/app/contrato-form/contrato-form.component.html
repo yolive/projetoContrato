@@ -1,0 +1,97 @@
+<div class="container">
+  <h1>Formulário de Contrato de Aula</h1> <hr /> <br />
+  <h1>Dados do Contratante</h1> <br />
+  <form [formGroup]="contratoForm" (ngSubmit)="onSubmit()">
+    <div class="container-forms">
+      <mat-form-field>
+        <input matInput placeholder="Nome Completo" formControlName="nome">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="CPF" formControlName="cpf">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Celular" formControlName="celular">
+      </mat-form-field>
+    </div>
+  
+    <div class="container-forms">
+      <mat-form-field>
+        <input matInput placeholder="Data Nascimento Aluno" formControlName="dataNascimento">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Aluno ou Responsável" formControlName="responsavel">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="CPF Responsável" formControlName="cpfResponsavel">
+      </mat-form-field>
+    </div>
+  
+    <div class="container-forms">
+      <mat-form-field>
+        <input matInput placeholder="Rua" formControlName="rua">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Bairro" formControlName="bairro">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="CEP" formControlName="cep">
+      </mat-form-field>
+    </div>
+    
+    <hr />
+
+    <h1>Aulas Disponíveis</h1>
+    <div  class="container-aulas">
+      <div *ngFor="let opcao of opcoesAulas">
+        <mat-checkbox [formControlName]="opcao">{{opcao}}</mat-checkbox>
+      </div>
+    </div>
+
+    <br />
+    <hr />
+
+    <h1>Início das Aulas e Pagamento</h1> 
+    <div class="container-forms">
+      <mat-form-field>
+        <mat-label>Valor da Mensalidade</mat-label>
+        <input matInput placeholder="R$" formControlName="valorMensalidade">
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Data de Pagamento</mat-label>
+        <mat-select>
+          <mat-option value="5">5</mat-option>
+          <mat-option value="10">10</mat-option>
+          <mat-option value="15">15</mat-option>
+          <mat-option value="20">20</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="container-forms">
+      <p>
+        Selecione ao lado qual forma de pagamento do valor foi acordado com a instituição.<br />
+        Informaremos o início das aulas através do número de celular informado acima.<br />
+      </p>
+
+      
+
+      <mat-form-field>
+        <mat-label>Forma de Pagamento</mat-label>
+        <mat-select>
+          <mat-option value="dinheiro">Dinheiro</mat-option>
+          <mat-option value="debito">Débito</mat-option>
+          <mat-option value="credito">Crédito</mat-option>
+          <mat-option value="pix">Pix</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  
+    <hr />
+  
+    <div class="container-forms">
+      <button mat-raised-button type="button" (click)="visualizarPdf()">Visualizar PDF</button>
+      <button mat-raised-button type="submit">Enviar por Email</button>
+    </div>
+  </form>
+</div>
+

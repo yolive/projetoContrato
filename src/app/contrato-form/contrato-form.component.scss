@@ -1,0 +1,32 @@
+.container {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  width: 75vw;
+  margin: 0 auto;
+
+  h1 {
+    text-align: center;
+    padding: 4px;
+    margin: 0;
+  }
+
+  .container-forms {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin-top: 4px;
+  }
+
+  .container-aulas {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    
+    align-items: start;
+    justify-content: space-between;
+    margin: auto;
+    padding: 8px;
+    height: 700px;
+  }
+}
