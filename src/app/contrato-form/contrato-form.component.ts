@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import { ContratoService } from '../services/contrato.service';
 
 @Component({
   selector: 'app-contrato-form',
@@ -31,7 +32,7 @@ export class ContratoFormComponent implements OnInit {
   formaPagamentoControl = new FormControl();
   dataPagamentoControl = new FormControl();
 
-  constructor(private fb: FormBuilder, private http: HttpClient) { }
+  constructor(private fb: FormBuilder, private http: HttpClient, private contratoService: ContratoService) { }
 
   ngOnInit() {
     this.contratoForm = this.fb.group({
@@ -65,7 +66,7 @@ export class ContratoFormComponent implements OnInit {
 
   visualizarPdf() {
     const formData = this.contratoForm.value;
-    this.http.post('/api/visualizar-pdf', formData, { responseType: 'blob' }).subscribe(blob => {
+    this.contratoService.visualizarPdf(formData).subscribe(blob => {
       const url = window.URL.createObjectURL(blob);
       window.open(url);
     });
@@ -73,7 +74,7 @@ export class ContratoFormComponent implements OnInit {
 
   onSubmit() {
     const formData = this.contratoForm.value;
-    this.http.post('/api/enviar-pdf', formData).subscribe(
+    this.contratoService.enviarPdf(formData).subscribe(
       response => {
         console.info('Successs: ' + response);
         alert('PDF enviado com sucesso!');
